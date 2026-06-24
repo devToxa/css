@@ -171,6 +171,7 @@
         <h1>CSS</h1>
         <ul>
             <li><a class="link" href="html/ex2-1.html" target="obj">ex2-1.html - 내부 스타일 시트</a></li>
+            <li><a class="link" href="html/ex2-2.html" target="obj">ex2-2.html - 외부 스타일 시트</a></li>
 
         </ul>
     </header>
@@ -185,7 +186,7 @@
         <div class="resizer-v" id="resizerY1"></div>
 
         <div class="code container" id="boxCode">
-            <object data="txt/ex2-1.txt" id="code"></object>
+            <object data="code/ex2-1.html" id="code"></object>
         </div>
 
         <div class="resizer-v" id="resizerY2"></div>
@@ -208,7 +209,7 @@
                 const fileNameWithExt = urlParts[urlParts.length - 1];
                 const fileName = fileNameWithExt.split('.')[0];
 
-                codeObject.data = `txt/${fileName}.txt`;
+                codeObject.data = `code/${fileName}.html`;
                 descObject.data = `desc/${fileName}.txt`;
 
                 // 모바일 편의 기능: 메뉴 클릭 시 본문 영역으로 자동 스크롤 이동
