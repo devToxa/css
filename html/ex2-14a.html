@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>속성 선택자(테스트)</title>
+    <style>
+        /* 기본 레이아웃 스타일 */
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .btn-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+        }
+
+        button {
+            margin: 4px;
+            padding: 8px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .preview-area {
+            border-left: 4px solid #ddd;
+            padding-left: 20px;
+            margin-top: 20px;
+        }
+
+        /* 실시간 스타일 조작을 위한 동적 클래스 */
+        .active-blue {
+            color: blue !important;
+            font-weight: bold;
+            background-color: #e6f0ff;
+        }
+
+        .active-red {
+            color: red !important;
+            font-weight: bold;
+            background-color: #ffe6e6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>CSS 속성 선택자 시뮬레이터</h2>
+    <p>아래 버튼을 클릭하면 해당 속성 선택자가 타겟팅하는 요소가 하이라이트됩니다.</p>
+
+    <div class="btn-container">
+        <button onclick="applySelector('h3[class]', 'blue')">h3[class]</button>
+        <button onclick="applySelector('p[class=\'icox\']', 'red')">p[class="icox"]</button>
+        <button onclick="applySelector('p[class~=\'icox\']', 'red')">p[class~="icox"]</button>
+        <button onclick="applySelector('p[class|=\'icox\']', 'red')">p[class|="icox"]</button>
+        <button onclick="applySelector('p[class^=\'icox\']', 'red')">p[class^="icox"]</button>
+        <button onclick="applySelector('p[class$=\'icox\']', 'red')">p[class$="icox"]</button>
+        <button onclick="applySelector('p[class*=\'icox\']', 'red')">p[class*="icox"]</button>
+        <button onclick="resetAll()" style="background-color: #333; color: #fff;">초기화</button>
+    </div>
+
+    <hr>
+
+    <div class="preview-area" id="sandbox">
+        <p>CSS에서 주석을 추가하면서 확인해 보세요.</p>
+        <h3 class="logo">서울 특별시</h3>
+        <h3>경기도</h3>
+        <p class="icox">주소록을 작성합니다.</p>
+        <p class="icoxpage">전화번호부를 작성합니다.</p>
+        <p class="screenicox">건강기록부를 작성합니다.</p>
+        <p class="I icox U">금전출납부를 작성합니다.</p>
+        <p class="icox-1">손익계산서를 작성합니다.</p>
+    </div>
+
+    <script>
+        function applySelector(selector, color) {
+            // 기존에 적용된 하이라이트 클래스 모두 제거
+            resetAll();
+
+            // 선택자에 해당하는 요소들만 찾아서 가져오기
+            // 예시 구역(#sandbox) 내부에서만 찾도록 제한
+            const elements = document.querySelectorAll(`#sandbox ${selector}`);
+
+            // 찾아낸 요소들에 실시간 색상 클래스 부여
+            elements.forEach(el => {
+                if (color === 'blue') {
+                    el.classList.add('active-blue');
+                } else if (color === 'red') {
+                    el.classList.add('active-red');
+                }
+            });
+        }
+
+        function resetAll() {
+            // 모든 요소에서 active 클래스 제거
+            const allElements = document.querySelectorAll('#sandbox *');
+            allElements.forEach(el => {
+                el.classList.remove('active-blue', 'active-red');
+            });
+        }
+    </script>
+</body>
+
+</html>
