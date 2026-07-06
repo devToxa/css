@@ -1,2 +1,17 @@
 - ex2-1.html 내부 스타일 시트
 - ex2-2.html 외부 스타일 시트
+- ex2-1.html - 내부 스타일 시트
+- ex2-2.html - 외부 스타일 시트
+- ex2-3.html - 스타일시트 포함
+- ex2-4.html - 인라인 스타일
+- ex2-5.html - type 선택자
+- ex2-6.html - id 선택자
+- ex2-7.html - class 선택자
+- ex2-8.html - 전체 선택자
+- ex2-9.html - 하위 선택자
+- ex2-10.html - 자식 선택자
+- ex2-11.html - 인접 선택자
+- ex2-12.html - 형제 선택자
+- ex2-13.html - 그룹 선택자
+- ex2-14.html - 속성 선택자
+- ext2-1.html - 기본 선택자
