@@ -15,3 +15,11 @@
 - ex2-13.html - 그룹 선택자
 - ex2-14.html - 속성 선택자
 - ext2-1.html - 기본 선택자
+- ex2-15.html - 가상 클래스
+- ex2-16.html - 가상 요소 선택자
+- ex2-17.html - 선택자의 우선순위
+- ex2-18.html - 글자의 단위
+- ex2-19.html - 뷰포트 기준 단위
+- ex2-20.html - font 관련 속성
+- ex2-21.html - font 한줄 표현
+- ex2-22.html - web font

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web font</title>
+    <style>
+        /* 1. 외부 폰트를 'test'라는 이름으로 등록 */
+        @font-face {
+            font-family: 'test';
+            src: url('fonts/NanumGothic.woff2') format('woff2');
+            /* 실제 폰트 파일 경로 */
+        }
+
+        p {
+            font-size: 2em;
+        }
+
+        /* 2. 사용할 때 폴백 폰트(consolas, monospace)를 지정 */
+        .gt {
+            font-family: 'test', consolas, monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        오늘의 날씨를 말씀드리겠습니다.
+    </p>
+    <p class="gt">
+        오늘의 날씨를 말씀드리겠습니다.
+    </p>
+</body>
+
+</html>

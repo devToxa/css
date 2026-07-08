@@ -56,13 +56,13 @@
             background-color: #e9e9e9;
         }
 
-        /* 🌟 [추가] 메뉴 활성화(Active) 스타일 */
+        /* 메뉴 활성화(Active) 스타일 */
         li a.active {
-            background-color: #e2e8f0; /* 연한 블루 그레이 배경 */
-            color: #1e40af;            /* 짙은 파란색 글씨 */
-            font-weight: bold;         /* 굵은 글씨 */
-            border-left: 4px solid #3b82f6; /* 왼쪽에 파란색 강조 선 */
-            padding-left: 11px;        /* 선이 생겨서 밀리는 만큼 왼쪽 패딩 조절 */
+            background-color: #e2e8f0;
+            color: #1e40af;
+            font-weight: bold;
+            border-left: 4px solid #3b82f6;
+            padding-left: 11px;
         }
 
         section {
@@ -78,15 +78,12 @@
             overflow: hidden;
         }
 
+        /* 50%씩 나누어 가지도록 구성 */
         .object.container {
-            height: 40%;
+            height: 50%;
         }
 
         .code.container {
-            height: 40%;
-        }
-
-        .desc.container {
             flex: 1;
         }
 
@@ -133,50 +130,37 @@
         @media (max-width: 768px) {
             body {
                 flex-direction: column;
-                /* 좌우 배치를 위아래 배치로 전환 */
                 overflow-y: auto;
-                /* 모바일 전체 스크롤 허용 */
             }
 
-            /* 상단 메뉴 영역 가로 스크롤 형태로 최적화 (선택형) */
             header {
                 width: 100% !important;
-                /* JS가 강제 지정한 너비 무시 */
                 max-width: none;
                 height: 200px;
-                /* 메뉴 공간 고정 크기 제한 */
                 border-right: none;
                 border-bottom: 3px solid #ccc;
             }
 
-            /* 크기 조절 구분선 숨기기 (모바일에서는 불필요) */
             .resizer-h,
             .resizer-v {
                 display: none !important;
             }
 
-            /* 본문 영역 최적화 */
             section {
                 width: 100%;
                 height: calc(100vh - 200px);
-                /* 전체 화면에서 메뉴 높이를 뺀 나머지 */
                 flex: none;
             }
 
-            /* 모바일 화면 안에서 3개 영역이 균등하게 보이도록 배치 */
+            /* 모바일에서도 반반씩 균등 배분 */
             .object.container {
-                height: 35% !important;
+                height: 50% !important;
                 border-bottom: 2px solid #ccc;
             }
 
             .code.container {
-                height: 35% !important;
-                border-bottom: 2px solid #ccc;
-            }
-
-            .desc.container {
-                height: 30% !important;
-                flex: none;
+                height: 50% !important;
+                border-bottom: none;
             }
         }
     </style>
@@ -202,6 +186,14 @@
             <li><a class="link" href="html/ex2-14.html">ex2-14.html - 속성 선택자</a></li>
             <li><a class="link" href="html/ex2-14a.html">ex2-14a.html - 속성 선택자(테스트)</a></li>
             <li><a class="link" href="html/ext2-1.html">ext2-1.html - 기본 선택자</a></li>
+            <li><a class="link" href="html/ex2-15.html">ext2-15.html - 가상 클래스</a></li>
+            <li><a class="link" href="html/ex2-16.html">ex2-16.html - 가상 요소 선택자</a></li>
+            <li><a class="link" href="html/ex2-17.html">ex2-17.html - 선택자의 우선순위</a></li>
+            <li><a class="link" href="html/ex2-18.html">ex2-18.html - 글자의 단위</a></li>
+            <li><a class="link" href="html/ex2-19.html">ex2-19.html - 뷰포트 기준 단위</a></li>
+            <li><a class="link" href="html/ex2-20.html">ex2-20.html - font 관련 속성</a></li>
+            <li><a class="link" href="html/ex2-21.html">ex2-21.html - font 한줄 표현</a></li>
+            <li><a class="link" href="html/ex2-22.html">ex2-22.html - web font</a></li>
         </ul>
     </header>
 
@@ -217,47 +209,37 @@
         <div class="code container" id="boxCode">
             <object data="code/ex2-1.html" id="code"></object>
         </div>
-
-        <div class="resizer-v" id="resizerY2"></div>
-
-        <div class="desc container" id="boxDesc">
-            <object data="desc/ex2-1.txt" id="desc"></object>
-        </div>
     </section>
 
     <script>
         /* 1. 콘텐츠 전환 및 메뉴 활성화 로직 */
         const objObject = document.getElementById('obj');
         const codeObject = document.getElementById('code');
-        const descObject = document.getElementById('desc');
         const linkElements = document.querySelectorAll(".link");
 
         linkElements.forEach(link => {
             link.addEventListener('click', function (e) {
-                e.preventDefault(); // <a> 태그 본래의 페이지 이동 현상 방지
+                e.preventDefault();
 
                 const fullUrl = e.currentTarget.href;
                 const urlParts = fullUrl.split('/');
                 const fileNameWithExt = urlParts[urlParts.length - 1];
                 const fileName = fileNameWithExt.split('.')[0];
 
-                // 콘텐츠 변경
+                // 콘텐츠 변경 (desc 제거)
                 objObject.data = `html/${fileName}.html`;
                 codeObject.data = `code/${fileName}.html`;
-                descObject.data = `desc/${fileName}.txt`;
 
-                // 🌟 모든 링크에서 active 클래스 제거 후 클릭한 링크에만 추가
+                // 모든 링크에서 active 클래스 제거 후 클릭한 링크에만 추가
                 linkElements.forEach(el => el.classList.remove('active'));
                 this.classList.add('active');
 
-                // 모바일 편의 기능: 메뉴 클릭 시 본문 영역으로 자동 스크롤 이동
                 if (window.innerWidth <= 768) {
                     document.getElementById('mainSection').scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
 
-        // 🌟 페이지 처음 로드 시 첫 번째 메뉴에 'active' 클래스 기본 부여
         if (linkElements.length > 0) {
             linkElements[0].classList.add('active');
         }
@@ -266,18 +248,15 @@
         const sidebar = document.getElementById('sidebar');
         const resizerX = document.getElementById('resizerX');
         const boxObj = document.getElementById('boxObj');
-        const boxCode = document.getElementById('boxCode');
         const resizerY1 = document.getElementById('resizerY1');
-        const resizerY2 = document.getElementById('resizerY2');
 
-        // 모바일 해상도 체크용 함수
         function isMobile() {
             return window.innerWidth <= 768;
         }
 
         // 좌우 크기 조절
         resizerX.addEventListener('mousedown', function (e) {
-            if (isMobile()) return; // 모바일이면 작동 안 함
+            if (isMobile()) return;
             document.body.classList.add('disabled-events');
             resizerX.classList.add('dragging');
 
@@ -297,7 +276,7 @@
         // 상하 크기 조절
         function makeResizableV(resizer, targetBox) {
             resizer.addEventListener('mousedown', function (e) {
-                if (isMobile()) return; // 모바일이면 작동 안 함
+                if (isMobile()) return;
                 document.body.classList.add('disabled-events');
                 resizer.classList.add('dragging');
 
@@ -321,7 +300,6 @@
         }
 
         makeResizableV(resizerY1, boxObj);
-        makeResizableV(resizerY2, boxCode);
     </script>
 </body>
 
